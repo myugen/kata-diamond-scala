@@ -5,6 +5,7 @@ ThisBuild / scalaVersion := "3.2.2"
 lazy val root = (project in file("."))
   .settings(
     name := "kata-diamond-scala",
+    idePackagePrefix := Some("dev.mcabsan.diamond"),
   )
 
 libraryDependencies ++= Seq(
