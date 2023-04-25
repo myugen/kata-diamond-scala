@@ -17,14 +17,14 @@ object Diamond {
 
   def createFor(character: Char, charForSpace: Char = ' '): Diamond = {
     val index = alphabet.indexOf(character.toUpper)
-    val allLetters = alphabet.take(index + 1).toSeq
+    val allLettersToPrint = alphabet.take(index + 1).toSeq
 
-    Diamond(charForSpace, createLevels(allLetters))
+    Diamond(charForSpace, createLevels(allLettersToPrint))
   }
 
-  private def createLevels(allLetters: WrappedString): Seq[DiamondLevel] = {
-    val upperSideDiamondLevels = allLetters.map {
-      (character: Char) => DiamondLevel.createBasedOn(character, allLetters)
+  private def createLevels(allLettersToPrint: WrappedString): Seq[DiamondLevel] = {
+    val upperSideDiamondLevels = allLettersToPrint.map {
+      DiamondLevel.createBasedOn(_, allLettersToPrint)
     }
     val lowerSideDiamondLevels = upperSideDiamondLevels.reverse.drop(1)
     upperSideDiamondLevels ++ lowerSideDiamondLevels
