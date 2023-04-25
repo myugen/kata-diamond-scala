@@ -9,4 +9,12 @@ class DiamondTest extends AnyFunSuite with Matchers {
     val diamond = Diamond.generateFor('A')
     diamond should be("A")
   }
+
+  test("should return a diamond for letter B") {
+    val diamond = Diamond.generateFor('B', '*')
+    diamond should be(
+      """*A*
+        |B*B
+        |*A*""".stripMargin)
+  }
 }
