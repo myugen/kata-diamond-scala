@@ -24,7 +24,7 @@ object Diamond {
 
   private def createLevels(allLetters: WrappedString): Seq[DiamondLevel] = {
     val upperSideDiamondLevels = allLetters.map {
-      (character: Char) => DiamondLevel.createFrom(character, allLetters)
+      (character: Char) => DiamondLevel.createBasedOn(character, allLetters)
     }
     val lowerSideDiamondLevels = upperSideDiamondLevels.reverse.drop(1)
     upperSideDiamondLevels ++ lowerSideDiamondLevels

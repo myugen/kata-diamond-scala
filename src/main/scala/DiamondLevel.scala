@@ -10,7 +10,7 @@ case class DiamondLevel(character: Char, x: (Int, Int), width: Int) {
 }
 
 object DiamondLevel {
-  def createFrom(character: Char, allLetters: Seq[Char]): DiamondLevel = {
+  def createBasedOn(character: Char, allLetters: Seq[Char]): DiamondLevel = {
     val currentPosition = allLetters.indexOf(character)
     val middle = allLetters.indices.max
     val width = allLetters.length * 2 - 1
