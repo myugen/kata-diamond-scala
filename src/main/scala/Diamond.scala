@@ -11,11 +11,17 @@ class Diamond private(private val specialCharacter: Char, private val levels: Se
 }
 
 object Diamond {
-  private val DEFAULT_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  private val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   def createFor(character: Char, charForSpace: Char = ' '): Diamond = {
-    val grid = DiamondGrid.createFrom(character, charForSpace)
+    val index = alphabet.indexOf(character.toUpper)
+    val allLetters = alphabet.take(index + 1).toSeq
+    val upperSideDiamondLevels = allLetters.map {
+      DiamondLevel.createFrom(_, allLetters, charForSpace)
+    }
+    val lowerSideDiamondLevels = upperSideDiamondLevels.reverse.drop(1)
+    val levels = upperSideDiamondLevels ++ lowerSideDiamondLevels
 
-    Diamond(charForSpace, grid.levels ++ grid.levels.reverse.drop(1))
+    Diamond(charForSpace, levels)
   }
 }
