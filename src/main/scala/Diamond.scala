@@ -1,11 +1,13 @@
 package dev.mcabsan.diamond
 
-class Diamond private(private val specialCharacter: Char, private val levels: Seq[DiamondLevel]) {
+import scala.collection.immutable.WrappedString
+
+class Diamond private(private val charForSpace: Char, private val levels: Seq[DiamondLevel]) {
   val dimension: Int = levels.size
 
   def print: String = {
     levels.map {
-      _.printLine
+      _.printLine(charForSpace)
     }.mkString("\n")
   }
 }
@@ -16,12 +18,15 @@ object Diamond {
   def createFor(character: Char, charForSpace: Char = ' '): Diamond = {
     val index = alphabet.indexOf(character.toUpper)
     val allLetters = alphabet.take(index + 1).toSeq
+
+    Diamond(charForSpace, createLevels(allLetters))
+  }
+
+  private def createLevels(allLetters: WrappedString): Seq[DiamondLevel] = {
     val upperSideDiamondLevels = allLetters.map {
-      DiamondLevel.createFrom(_, allLetters, charForSpace)
+      (character: Char) => DiamondLevel.createFrom(character, allLetters)
     }
     val lowerSideDiamondLevels = upperSideDiamondLevels.reverse.drop(1)
-    val levels = upperSideDiamondLevels ++ lowerSideDiamondLevels
-
-    Diamond(charForSpace, levels)
+    upperSideDiamondLevels ++ lowerSideDiamondLevels
   }
 }
