@@ -23,8 +23,8 @@ private def readInput: Try[Char] = {
   val input = readLine()
   input match {
     case "" => Failure(new IllegalArgumentException("You did not enter anything."))
-    case str if str.length > 1 => Failure(new IllegalArgumentException("You entered more than one character."))
+    case str if str.length > 1 =>
+      Failure(new IllegalArgumentException("You entered more than one character."))
     case _ => Success(input.charAt(0).toUpper)
   }
 }
-

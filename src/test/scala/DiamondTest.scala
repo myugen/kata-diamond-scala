@@ -16,7 +16,9 @@ class DiamondTest extends AnyFunSuite with Matchers {
     val diamond = Diamond.createFor('1')
 
     diamond.isFailure should be(true)
-    diamond.failed.get.getMessage should be("Letter must be in the alphabet ABCDEFGHIJKLMNOPQRSTUVWXYZ. Current letter: 1")
+    diamond.failed.get.getMessage should be(
+      "Letter must be in the alphabet ABCDEFGHIJKLMNOPQRSTUVWXYZ. Current letter: 1"
+    )
   }
 
   test("should print A diamond") {
@@ -30,8 +32,7 @@ class DiamondTest extends AnyFunSuite with Matchers {
     val diamond = Diamond.createFor('C', '*')
 
     diamond.isSuccess should be(true)
-    diamond.get.print should be(
-      """**A**
+    diamond.get.print should be("""**A**
         |*B*B*
         |C***C
         |*B*B*
