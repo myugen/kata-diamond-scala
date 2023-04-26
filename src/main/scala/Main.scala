@@ -4,16 +4,14 @@ import scala.io.StdIn.readLine
 import scala.util.{Failure, Success, Try}
 
 @main def main(): Unit = {
-  val input = readInput
-  val character = input match {
+  val character = readInput match {
     case Success(character) => character
     case Failure(exception) =>
       println(exception.getMessage)
       return // exit the program
 
   }
-  val triedDiamond = Diamond.createFor(character.toUpper)
-  triedDiamond match {
+  Diamond.createFor(character.toUpper) match {
     case Success(diamond) =>
       println(s"Here is your ${character.toUpper}-shape diamond:")
       println(diamond.print)
