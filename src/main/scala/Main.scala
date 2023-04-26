@@ -9,7 +9,6 @@ import scala.util.{Failure, Success, Try}
     case Failure(exception) =>
       println(exception.getMessage)
       return // exit the program
-
   }
   Diamond.createFor(character.toUpper) match {
     case Success(diamond) =>
